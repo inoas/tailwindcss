@@ -3,18 +3,15 @@
 2. Allow adding a border to an element by just adding a border-width. (https://github.com/tailwindcss/tailwindcss/pull/116)
 */
 
-*,
-::before,
-::after {
+:where(*, ::before, ::after) {
   box-sizing: border-box; /* 1 */
   border-width: 0; /* 2 */
   border-style: solid; /* 2 */
-  border-color: theme('borderColor.DEFAULT', currentColor); /* 2 */
+  border-color: theme("borderColor.DEFAULT", currentColor); /* 2 */
 }
 
-::before,
-::after {
-  --tw-content: '';
+:where(::before, ::after) {
+  --tw-content: "";
 }
 
 /*
@@ -24,12 +21,28 @@
 4. Use the user's configured `sans` font-family by default.
 */
 
-html {
+:where(html) {
   line-height: 1.5; /* 1 */
   -webkit-text-size-adjust: 100%; /* 2 */
   -moz-tab-size: 4; /* 3 */
   tab-size: 4; /* 3 */
-  font-family: theme('fontFamily.sans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"); /* 4 */
+  font-family: theme(
+    "fontFamily.sans",
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    Arial,
+    "Noto Sans",
+    sans-serif,
+    "Apple Color Emoji",
+    "Segoe UI Emoji",
+    "Segoe UI Symbol",
+    "Noto Color Emoji"
+  ); /* 4 */
 }
 
 /*
@@ -37,7 +50,7 @@ html {
 2. Inherit line-height from `html` so users can set them as a class directly on the `html` element.
 */
 
-body {
+:where(body) {
   margin: 0; /* 1 */
   line-height: inherit; /* 2 */
 }
@@ -48,7 +61,7 @@ body {
 3. Ensure horizontal rules are visible by default.
 */
 
-hr {
+:where(hr) {
   height: 0; /* 1 */
   color: inherit; /* 2 */
   border-top-width: 1px; /* 3 */
@@ -58,7 +71,7 @@ hr {
 Add the correct text decoration in Chrome, Edge, and Safari.
 */
 
-abbr:where([title]) {
+:where(abbr[title]) {
   text-decoration: underline dotted;
 }
 
@@ -66,12 +79,7 @@ abbr:where([title]) {
 Remove the default font size and weight for headings.
 */
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+:where(h1, h2, h3, h4, h5, h6) {
   font-size: inherit;
   font-weight: inherit;
 }
@@ -80,7 +88,7 @@ h6 {
 Reset links to optimize for opt-in styling instead of opt-out.
 */
 
-a {
+:where(a) {
   color: inherit;
   text-decoration: inherit;
 }
@@ -89,8 +97,7 @@ a {
 Add the correct font weight in Edge and Safari.
 */
 
-b,
-strong {
+:where(b, strong) {
   font-weight: bolder;
 }
 
@@ -99,11 +106,8 @@ strong {
 2. Correct the odd `em` font sizing in all browsers.
 */
 
-code,
-kbd,
-samp,
-pre {
-  font-family: theme('fontFamily.mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace); /* 1 */
+:where(code, kbd, samp, pre) {
+  font-family: theme("fontFamily.mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace); /* 1 */
   font-size: 1em; /* 2 */
 }
 
@@ -111,7 +115,7 @@ pre {
 Add the correct font size in all browsers.
 */
 
-small {
+:where(small) {
   font-size: 80%;
 }
 
@@ -119,19 +123,18 @@ small {
 Prevent `sub` and `sup` elements from affecting the line height in all browsers.
 */
 
-sub,
-sup {
+:where(sub, sup) {
   font-size: 75%;
   line-height: 0;
   position: relative;
   vertical-align: baseline;
 }
 
-sub {
+:where(sub) {
   bottom: -0.25em;
 }
 
-sup {
+:where(sup) {
   top: -0.5em;
 }
 
@@ -141,7 +144,7 @@ sup {
 3. Remove gaps between table borders by default.
 */
 
-table {
+:where(table) {
   text-indent: 0; /* 1 */
   border-color: inherit; /* 2 */
   border-collapse: collapse; /* 3 */
@@ -153,13 +156,10 @@ table {
 3. Remove default padding in all browsers.
 */
 
-button,
-input,
-optgroup,
-select,
-textarea {
+:where(button, input, optgroup, select, textarea) {
   font-family: inherit; /* 1 */
   font-size: 100%; /* 1 */
+  font-weight: inherit; /* 1 */
   line-height: inherit; /* 1 */
   color: inherit; /* 1 */
   margin: 0; /* 2 */
@@ -170,8 +170,7 @@ textarea {
 Remove the inheritance of text transform in Edge and Firefox.
 */
 
-button,
-select {
+:where(button, select) {
   text-transform: none;
 }
 
@@ -180,10 +179,7 @@ select {
 2. Remove default button styles.
 */
 
-button,
-[type='button'],
-[type='reset'],
-[type='submit'] {
+:where(button, [type="button"], [type="reset"], [type="submit"]) {
   -webkit-appearance: button; /* 1 */
   background-color: transparent; /* 2 */
   background-image: none; /* 2 */
@@ -193,7 +189,7 @@ button,
 Use the modern Firefox focus style for all focusable elements.
 */
 
-:-moz-focusring {
+:where(:-moz-focusring) {
   outline: auto;
 }
 
@@ -201,7 +197,7 @@ Use the modern Firefox focus style for all focusable elements.
 Remove the additional `:invalid` styles in Firefox. (https://github.com/mozilla/gecko-dev/blob/2f9eacd9d3d995c937b4251a5557d95d494c9be1/layout/style/res/forms.css#L728-L737)
 */
 
-:-moz-ui-invalid {
+:where(:-moz-ui-invalid) {
   box-shadow: none;
 }
 
@@ -209,7 +205,7 @@ Remove the additional `:invalid` styles in Firefox. (https://github.com/mozilla/
 Add the correct vertical alignment in Chrome and Firefox.
 */
 
-progress {
+:where(progress) {
   vertical-align: baseline;
 }
 
@@ -217,8 +213,7 @@ progress {
 Correct the cursor style of increment and decrement buttons in Safari.
 */
 
-::-webkit-inner-spin-button,
-::-webkit-outer-spin-button {
+:where(::-webkit-inner-spin-button, ::-webkit-outer-spin-button) {
   height: auto;
 }
 
@@ -227,7 +222,7 @@ Correct the cursor style of increment and decrement buttons in Safari.
 2. Correct the outline style in Safari.
 */
 
-[type='search'] {
+:where([type="search"]) {
   -webkit-appearance: textfield; /* 1 */
   outline-offset: -2px; /* 2 */
 }
@@ -236,7 +231,7 @@ Correct the cursor style of increment and decrement buttons in Safari.
 Remove the inner padding in Chrome and Safari on macOS.
 */
 
-::-webkit-search-decoration {
+:where(::-webkit-search-decoration) {
   -webkit-appearance: none;
 }
 
@@ -245,7 +240,7 @@ Remove the inner padding in Chrome and Safari on macOS.
 2. Change font properties to `inherit` in Safari.
 */
 
-::-webkit-file-upload-button {
+:where(::-webkit-file-upload-button) {
   -webkit-appearance: button; /* 1 */
   font: inherit; /* 2 */
 }
@@ -254,7 +249,7 @@ Remove the inner padding in Chrome and Safari on macOS.
 Add the correct display in Chrome and Safari.
 */
 
-summary {
+:where(summary) {
   display: list-item;
 }
 
@@ -262,34 +257,20 @@ summary {
 Removes the default spacing and border for appropriate elements.
 */
 
-blockquote,
-dl,
-dd,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-hr,
-figure,
-p,
-pre {
+:where(blockquote, dl, dd, h1, h2, h3, h4, h5, h6, hr, figure, p, pre) {
   margin: 0;
 }
 
-fieldset {
+:where(fieldset) {
   margin: 0;
   padding: 0;
 }
 
-legend {
+:where(legend) {
   padding: 0;
 }
 
-ol,
-ul,
-menu {
+:where(ol, ul, menu) {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -299,7 +280,7 @@ menu {
 Prevent resizing textareas horizontally by default.
 */
 
-textarea {
+:where(textarea) {
   resize: vertical;
 }
 
@@ -308,25 +289,23 @@ textarea {
 2. Set the default placeholder color to the user's configured gray 400 color.
 */
 
-input::placeholder,
-textarea::placeholder {
+:where(input::placeholder, textarea::placeholder) {
   opacity: 1; /* 1 */
-  color: theme('colors.gray.400', #9ca3af); /* 2 */
+  color: theme("colors.gray.400", #9ca3af); /* 2 */
 }
 
 /*
 Set the default cursor for buttons.
 */
 
-button,
-[role="button"] {
+:where(button, [role="button"]) {
   cursor: pointer;
 }
 
 /*
 Make sure disabled buttons don't get the pointer cursor.
 */
-:disabled {
+:where(:disabled) {
   cursor: default;
 }
 
@@ -336,14 +315,7 @@ Make sure disabled buttons don't get the pointer cursor.
    This can trigger a poorly considered lint error in some tools but is included by design.
 */
 
-img,
-svg,
-video,
-canvas,
-audio,
-iframe,
-embed,
-object {
+:where(img, svg, video, canvas, audio, iframe, embed, object) {
   display: block; /* 1 */
   vertical-align: middle; /* 2 */
 }
@@ -352,8 +324,7 @@ object {
 Constrain images and videos to the parent width and preserve their intrinsic aspect ratio. (https://github.com/mozdevs/cssremedy/issues/14)
 */
 
-img,
-video {
+:where(img, video) {
   max-width: 100%;
   height: auto;
 }
@@ -362,6 +333,6 @@ video {
 Ensure the default browser behavior of the `hidden` attribute.
 */
 
-[hidden] {
+:where([hidden]) {
   display: none;
 }
